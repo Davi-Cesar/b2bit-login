@@ -2,15 +2,15 @@
 import { Profile } from "./screens/profile";
 import { SignIn } from "./screens/signin";
 
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 export function App() {
   return (
-    <BrowserRouter basename="/b2bit-login">
+    <BrowserRouter>
       <Routes>
-        <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<SignIn />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/b2bit-login" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   );
