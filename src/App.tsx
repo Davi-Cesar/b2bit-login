@@ -6,7 +6,7 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/b2bit-login">
       <Routes>
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<SignIn />} />
