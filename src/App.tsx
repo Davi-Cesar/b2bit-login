@@ -10,6 +10,7 @@ export function App() {
       <Routes>
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<SignIn />} />
+        <Route path="/b2bit-login" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   );
