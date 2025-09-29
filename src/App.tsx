@@ -2,7 +2,7 @@
 import { Profile } from "./screens/profile";
 import { SignIn } from "./screens/signin";
 
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 export function App() {
   return (
@@ -10,7 +10,7 @@ export function App() {
       <Routes>
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<SignIn />} />
-        <Route path="/b2bit-login" element={<SignIn />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
