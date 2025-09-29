@@ -15,16 +15,15 @@ export function useLogin() {
     setError(null);
 
     try {
-      const response = await api.post(
-        "https://api.homologation.cliqdrive.com.br/auth/login/",
-        data
-      );
-      // Exemplo: salvar token
-      localStorage.setItem("token", response.data?.token ?? "");
+      const response = await api.post("/auth/login/", data);
+      const token = response.data?.tokens?.access;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
+
       return response.data;
     } catch (err: any) {
-      setError(err.response?.data?.message || "Erro no login");
-      throw err;
+      setError("E-mail ou senha incorretos.");
     } finally {
       setLoading(false);
     }

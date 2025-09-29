@@ -1,9 +1,27 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://api.homologation.cliqdrive.com.br",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json;version=v1_web",
   },
 });
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token && config.headers) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      window.location.href = "/";
+    }
+    return Promise.reject(error);
+  }
+);
